@@ -1,8 +1,8 @@
 import './App.css';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from './Home';
 import Login from './LogIn';
 import SignUp from './SignUp';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SearchResults from './SearchResults';
 
 function App() {

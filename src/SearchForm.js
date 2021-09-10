@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Redirect } from "react-router";
 import { useHistory } from "react-router-dom";
 
 function Search(prop) {
 
-  const [searchInput, setSearchInput] = useState(''); //these states used to submit form data
+  const [searchInput, setSearchInput] = useState(''); //controlled inputs - these two states used to submit form data
   const [location, setLocation] = useState('');
   const history = useHistory();
 
@@ -20,8 +19,7 @@ function Search(prop) {
   const handleSubmit = event => {
     event.preventDefault(); //prevent default behavior of form submission (refresh->loss of inputs)
     //alert(`Submitting search input: ${searchInput}, Location: ${location}`);
-    history.push("/search-results"); //redirect to search-results page after submitting form
-    
+    history.push(`/search-results?search_input=${searchInput}&location=${location}`); //redirect to search-results page after submitting form
   }
 
   const handleKeyPress = event => {
