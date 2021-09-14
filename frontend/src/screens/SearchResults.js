@@ -6,25 +6,17 @@ import Result from '../components/Result';
 
 const SearchResults = (props) => {
 
-    // Get query param from URL
+    // Get query string from URL
 
-    const { search } = useLocation(); // Search property whose value is the query string
+    const { search } = useLocation(); // Search property whose value is the query string: 
     console.log('Query string:', search);
 
-    const values = queryString.parse(search); // Parse query string into an object which values can be grabbed from
-    console.log(values); // Values object
-    console.log('Search input:', values.search_input);
-    console.log('Location:', values.location);
+    // // To get query string values
 
-    //Use values to find in SearchResultsData
-
-    // const searchResultElements = [];
-
-    // for (let i = 0; i < searchResultsData.length; i++) {
-    //     if (data[i].clinicName.toLowerCase().includes(values.search_input.toLowerCase())) {
-    //         searchResultElements.push(<Result clinicName={data[i].clinicName} address={data[i].address}/>);
-    //     }
-    // }
+    // const values = queryString.parse(search); // Parse query string into an object which values can be grabbed from
+    // console.log(values); // Values object
+    // console.log('Search input:', values.search_input);
+    // console.log('Location:', values.location);
 
     //Use axios
 
@@ -32,8 +24,8 @@ const SearchResults = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get('/api/clinics'); //Array in backend transferred to data in frontend
-
+            //const { data } = await axios.get('/api/clinics'); 
+            const { data } = await axios.get('search-results/' + search); //Array in backend transferred to data in frontend
             setClinics(data);
         };
         fetchData();
