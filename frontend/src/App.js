@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Home from './Home';
-import Login from './LogIn';
-import SignUp from './SignUp';
-import SearchResults from './SearchResults';
+import Home from './screens/Home';
+import Login from './screens/LogIn';
+import SignUp from './screens/SignUp';
+import SearchResults from './screens/SearchResults';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
-import Navigation from "./Navigation";
-import Search from "./SearchForm";
+import Navigation from "../components/Navigation";
+import Search from "../components/SearchForm";
 
 const Home = () => {
     return (
