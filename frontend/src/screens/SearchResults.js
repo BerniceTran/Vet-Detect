@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import queryString from 'query-string';
+//import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import Result from '../components/Result';
 
@@ -22,10 +22,10 @@ const SearchResults = (props) => {
 
     const [clinics, setClinics] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { //Only want to fetch data when component mounts
         const fetchData = async () => {
             //const { data } = await axios.get('/api/clinics'); 
-            const { data } = await axios.get('search-results/' + search); //Array in backend transferred to data in frontend
+            const { data } = await axios.get('search-results/' + search); //Filtered array in backend transferred to data in frontend
             setClinics(data);
         };
         fetchData();

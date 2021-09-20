@@ -1,7 +1,14 @@
 import express, { query } from 'express';
+import mongoose from 'mongoose';
 import data from './data.js'; //server side, important to append .js extension
+import userRouter from './routers/userRouter.js';
 
 const app = express();
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/vetdetect', 
+    async(err)=>{
+        if(err) throw err;
+        console.log("Connected to MongoDB");
+});
 
 app.get('/', (req, res) => {
     res.send('Server is ready');
@@ -28,11 +35,18 @@ app.get('/search-results', (req, res) => {
         // console.log(querySearchParam);
         // console.log(data);
         
-        filteredData = data.filter(clinic => clinic.clinicName.toLowerCase().includes(querySearchParam));
+        filteredData = data.clinics.filter(clinic => clinic.clinicName.toLowerCase().includes(querySearchParam));
         // console.log(filteredData);
 
         res.send(filteredData);
     }
+});
+
+app.use('/api/users', userRouter);
+
+// Middleware error catcher - error in router that is wrapped in expressAsyncHandler will be redirected here
+app.use((err, req, res, next) => {
+    res.send('Server is ready')
 });
 
 const port = process.env.PORT || 3001;
