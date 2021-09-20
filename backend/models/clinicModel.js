@@ -6,14 +6,15 @@ const clinicSchema = new mongoose.Schema(
         street: {type: String, required: true},
         city: {type: String, required: true},
         state: {type: String, required: true},
-        zip: {type: String, required: true},
-        image: {type: String, required: true}
+        zip: {type: Number, required: true},
+        phone: {type: Number, required: true},
+        image: {type: String}
     }, 
     {
-        timestamps: true  // Created at and updated at
+        timestamps: true
     }
 );
 
-const User = mongoose.model("User", userSchema); // Create model based on schema  
+const Clinic = mongoose.model("Clinic", clinicSchema); 
 
 export default Clinic;

@@ -17,19 +17,31 @@ const data = {
     ],
     clinics: [
         {
-            id: 1,
-            clinicName: "Paws and Whiskers",
-            address: "123 Park Ave."
+            name: "Steinway Court Veterinarian",
+            street: "3241 Steinway Street",
+            city: "Queens",
+            state: "NY",
+            zip: 11103,
+            phone: 7187282822,
+            image: null,
         },
         {
-            id: 2,
-            clinicName: "Animal Urgent Care",
-            address: "456 Madison Ave."
+            name: "Veterinary Care Group - Astoria",
+            street: "37-03 Broadway",
+            city: "Queens",
+            state: "NY",
+            zip: 11103,
+            phone: 7182787811,
+            image: null,
         },
         {
-            id: 3,
-            clinicName: "Pet Urgent Care",
-            address: "789 Lexington Ave."
+            name: "Court Square Animal Hospital",
+            street: "4234 Crescent Street",
+            city: "Long Island City",
+            state: "NY",
+            zip: 11101,
+            phone: 7185774701,
+            image: null,
         }
     ]
 }
