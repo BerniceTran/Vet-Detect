@@ -4,11 +4,50 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import passport from 'passport';
-import { Strategy } from 'passport-local';
+import passportLocal from 'passport-local';
 import bcrypt from 'bcryptjs';
 import clinicRouter from './routers/clinicRouter.js'; //Server side, important to append .js extension
 import userRouter from './routers/userRouter.js';
 import User from './models/userModel.js';
+import Strategy from './passportConfig.js';
+import flash from 'connect-flash';
+
+    const LocalStrategy = passportLocal.Strategy;
+    passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
+        User.findOne({ email: username }, (err, user) => {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect email address.' }); // null: no error, false: no user
+            }
+            bcrypt.compare(password, user.password, (err, isValid) => {
+                if (err) { return done(err); }
+                if (!isValid) { return done(null, false, { message: 'Incorrect password.' }); }
+                return done(null, user);
+            })
+            // bcrypt.compare(password, user.password, (err, result) => {
+            //     if (err) { return done(err); }
+            //     if (result === true) { return done(null, user); }
+            //     else return done(null, false, { message: 'Incorrect password.' });
+            // })
+
+
+        //   if (!user.validPassword(password)) {
+        //     return done(null, false, { message: 'Incorrect password.' });
+        //   }
+        //   return done(null, user);
+        });
+    }));
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
+    });
+
+    // Takes session, unravels, and returns user
+
+    passport.deserializeUser((id, done) => {
+        User.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
 
 const app = express();
 
@@ -19,15 +58,12 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/vetdetect',
 });
 
 // Middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: "http://localhost:3000", // location of the React app 
     credentials: true
-})); 
-// app.use(cors());
+}));
 app.use(
     session({
         secret: "secretcode",
@@ -37,11 +73,62 @@ app.use(
     })
 )
 app.use(cookieParser("secretcode"));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+ 
+// app.use((req, res, next) => {
+//     console.log(req.session);
+//     console.log(user);
+//     next();
+// });
+
 
 //Routes
-app.post("/login",  (req, res) => {
-    console.log(req.body);
+app.post("/login",  (req, res, next) => {
+   
+    passport.authenticate("localstrategy", (err, user, info) => {
+        //console.log(info);
+        if (err) throw err;
+        if (!user) {
+            console.log(info);
+            //res.send("User does not exist");
+            res.send(info);
+        }
+        else {
+            req.logIn(user, err => {
+                if (err) throw err;
+                res.send("Successfully authenticated");
+                console.log(req.user);
+            });
+        }
+    })(req, res, next);
 });
+
+// app.post("/login",  (req, res, next) => {
+   
+//     passport.authenticate("localstrategy", (err, user, info) => {
+//         //console.log(info);
+//         if (err) {return next(err);}
+//         if (!user) {
+//             { return res.redirect('/login'); }
+//         }
+//         req.logIn(user, err => {
+//                 if (err) { return next(err); }
+//                 res.send("Successfully authenticated");
+//                 return res.redirect('/home');
+//                 console.log(req.user);
+//             });
+        
+//     })(req, res, next);
+// });
+
+// app.post("/login",
+//   passport.authenticate('localstrategy', { successRedirect: '/',
+//                                    failureRedirect: '/',
+//                                    failureFlash: true })
+// );
+
 
 app.post("/register", (req, res) => {
     console.log("Request body", req.body);
@@ -51,8 +138,6 @@ app.post("/register", (req, res) => {
         if (!doc) {
             const newUser = new User(req.body);
             newUser.password = await bcrypt.hash(newUser.password, 8);
-            // console.log(newUser.password);
-            // console.log('After hashing', newUser);
 
             newUser
             .save()

@@ -1,33 +1,52 @@
 import passport from 'passport';
-import passportlocal from 'passport-local';
+import passportLocal from 'passport-local';
+//import { Strategy as LocalStrategy} from 'passport-local';
 import bcrypt from 'bcryptjs';
 import User from './models/userModel.js';
 
-const localStrategy = passportlocal.Strategy;
+const LocalStrategy = passportLocal.Strategy;
 
-passport.use(new localStrategy((email, password, done) => {
-    User.findOne({ email: email }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect email address.' }); // null: no error, false: no user
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+const Strategy = () => {
+
+    passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
+        console.log("In LocalStrategy", username);
+        User.findOne({ email: username }, (err, user) => {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect email address.' }); // null: no error, false: no user
+            }
+            bcrypt.compare(password, user.password, (err, isValid) => {
+                if (err) { return done(err); }
+                if (!isValid) { return done(null, false, { message: 'Incorrect password.' }); }
+                return done(null, user);
+            })
+            // bcrypt.compare(password, user.password, (err, result) => {
+            //     if (err) { return done(err); }
+            //     if (result === true) { return done(null, user); }
+            //     else return done(null, false, { message: 'Incorrect password.' });
+            // })
+
+
+        //   if (!user.validPassword(password)) {
+        //     return done(null, false, { message: 'Incorrect password.' });
+        //   }
+        //   return done(null, user);
+        });
+    }));
+
+    // Create session from user
+
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
     });
-}));
 
-// Create cookie from user
+    // Takes session, unravels, and returns user
 
-passport.deserializeUser((user, done) => {
-    done(null, user.id);
-});
-
-// Takes cookie, unravels, and returns user
-
-passport.deserializeUser((id, done) => {
-    User.findById(id, function(err, user) {
-        done(err, user);
+    passport.deserializeUser((id, done) => {
+        User.findById(id, function(err, user) {
+            done(err, user);
+        });
     });
-});
+};
+
+export default Strategy;

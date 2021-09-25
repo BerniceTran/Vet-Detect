@@ -1,28 +1,35 @@
 import { useState } from "react";
 import axios from 'axios';
+import { set } from "mongoose";
 
 const Login = (prop) => {
 
-    const [loginUsername, setLoginUsername] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [data, setData] = useState(null);
 
     const login = () => {
         axios({
-            method: "GET",
+            method: "POST",
             data: {
-                username: loginUsername,
-                password: loginPassword
+                //email: email,
+                username: email,
+                password: password
             },
             withCredentials: true,
             url: "http://localhost:3001/login",
-        }).then((res) => console.log(res));
+        }).then((res) => {
+            console.log(res.data.message);
+            setData(res.data.message);
+        });
     }
 
     return (
         <div>
             <h4>Log In</h4>
-            <input placeholder="username" onChange={e => setLoginUsername(e.target.value)}/>
-            <input placeholder="password" onChange={e => setLoginPassword(e.target.value)}/>
+            {data ? <p> {data}</p> : null }
+            <input placeholder="email" onChange={e => setEmail(e.target.value)}/>
+            <input placeholder="password" onChange={e => setPassword(e.target.value)}/>
             <button onClick={login}>Submit</button>
         </div>
         
