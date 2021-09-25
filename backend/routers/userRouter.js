@@ -8,7 +8,7 @@ const userRouter = express.Router();
 userRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
-        await User.remove({});
+        //await User.deleteMany({});
         const createdUsers = await User.insertMany(data.users); // Insert users objects from data array to User collection in MongoDB
         res.send({createdUsers});
     })

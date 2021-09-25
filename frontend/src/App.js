@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from './screens/Home';
 import Login from './screens/LogIn';
-import SignUp from './screens/SignUp';
 import SearchResults from './screens/SearchResults';
+import Register from "./screens/Register";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/signup">
-            <SignUp />
+            <Register />
           </Route>
           <Route path="/search-results">
             <SearchResults />
