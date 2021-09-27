@@ -14,4 +14,8 @@ userRouter.get(
     })
 );
 
+userRouter.get("/", (req, res) => {
+    res.send(req.user)  // Once authenticated, user is stored inside req.user
+});
+
 export default userRouter;

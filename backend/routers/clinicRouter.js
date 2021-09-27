@@ -17,7 +17,7 @@ clinicRouter.get(
 clinicRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
-        await Clinic.deleteMany({});
+        //await Clinic.deleteMany({});
         const createdClinics = await Clinic.insertMany(data.clinics);
         res.send({createdClinics});
     })
@@ -30,21 +30,17 @@ clinicRouter.get(
         const querySearch = req.query.search_input;
         const queryLocation = req.query.location;
 
-        //const clinics =  await Clinic.find({$text: {$search: querySearch}});
-        //const clinics =  await Clinic.find({name: {$regex: /querySearch/i}, $or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
-        //const clinics =  await Clinic.find({name: new RegExp(querySearch, 'i'), $or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
-        const clinics =  await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
+        const clinics = await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
+
+        // const clinics = querySearch ? 
+        //     await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]}) :
+        //     await Clinic.find({$or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
 
         if (clinics) {
             res.send(clinics);
         } else {
             res.status(404).send({message: 'Clinics not found'});
         }
-        // if (querySearchParam == undefined || queryLocationParam == undefined) {
-        //     res.status(404).send({message: 'Clinics not found'});
-        // } else {
-        //     res.send(clinics);
-        // }
     })
 );
 

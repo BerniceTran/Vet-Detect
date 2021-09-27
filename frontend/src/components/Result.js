@@ -1,8 +1,11 @@
 const Result = ({clinic}) => {
     return (
        <div>
-           <p>{clinic.clinicName}</p>
-           <p>{clinic.address}</p>
+           <div>
+               <img></img>
+           </div>
+           <h4>{clinic.name}</h4>
+           {/* <p>{clinic.address}</p> */}
        </div>
     );
 }

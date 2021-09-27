@@ -10,44 +10,32 @@ import clinicRouter from './routers/clinicRouter.js'; //Server side, important t
 import userRouter from './routers/userRouter.js';
 import User from './models/userModel.js';
 import Strategy from './passportConfig.js';
-import flash from 'connect-flash';
 
-    const LocalStrategy = passportLocal.Strategy;
-    passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
-        User.findOne({ email: username }, (err, user) => {
+const LocalStrategy = passportLocal.Strategy;
+passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
+    User.findOne({ email: username }, (err, user) => {
+        if (err) { return done(err); }
+        if (!user) {
+            return done(null, false, { message: 'Incorrect email address.' }); // null: no error, false: no user
+        }
+        bcrypt.compare(password, user.password, (err, isValid) => {
             if (err) { return done(err); }
-            if (!user) {
-                return done(null, false, { message: 'Incorrect email address.' }); // null: no error, false: no user
-            }
-            bcrypt.compare(password, user.password, (err, isValid) => {
-                if (err) { return done(err); }
-                if (!isValid) { return done(null, false, { message: 'Incorrect password.' }); }
-                return done(null, user);
-            })
-            // bcrypt.compare(password, user.password, (err, result) => {
-            //     if (err) { return done(err); }
-            //     if (result === true) { return done(null, user); }
-            //     else return done(null, false, { message: 'Incorrect password.' });
-            // })
-
-
-        //   if (!user.validPassword(password)) {
-        //     return done(null, false, { message: 'Incorrect password.' });
-        //   }
-        //   return done(null, user);
-        });
-    }));
-    passport.serializeUser((user, done) => {
-        done(null, user.id);
+            if (!isValid) { return done(null, false, { message: 'Incorrect password.' }); }
+            return done(null, user);
+        })
     });
+}));
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
 
-    // Takes session, unravels, and returns user
+// Takes session, unravels, and returns user
 
-    passport.deserializeUser((id, done) => {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
+passport.deserializeUser((id, done) => {
+    User.findById(id, function(err, user) {
+        done(err, user);
     });
+});
 
 const app = express();
 
@@ -73,7 +61,6 @@ app.use(
     })
 )
 app.use(cookieParser("secretcode"));
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
  
@@ -98,37 +85,14 @@ app.post("/login",  (req, res, next) => {
         else {
             req.logIn(user, err => {
                 if (err) throw err;
-                res.send("Successfully authenticated");
-                console.log(req.user);
+                res.send(true);
+                //res.send(user);
+                //res.send("Successfully authenticated");
+                // console.log("In auth",user);
             });
         }
     })(req, res, next);
 });
-
-// app.post("/login",  (req, res, next) => {
-   
-//     passport.authenticate("localstrategy", (err, user, info) => {
-//         //console.log(info);
-//         if (err) {return next(err);}
-//         if (!user) {
-//             { return res.redirect('/login'); }
-//         }
-//         req.logIn(user, err => {
-//                 if (err) { return next(err); }
-//                 res.send("Successfully authenticated");
-//                 return res.redirect('/home');
-//                 console.log(req.user);
-//             });
-        
-//     })(req, res, next);
-// });
-
-// app.post("/login",
-//   passport.authenticate('localstrategy', { successRedirect: '/',
-//                                    failureRedirect: '/',
-//                                    failureFlash: true })
-// );
-
 
 app.post("/register", (req, res) => {
     console.log("Request body", req.body);
@@ -153,7 +117,6 @@ app.post("/register", (req, res) => {
         }
     });
 });
-
 
 // app.get('/search-results', (req, res) => {
 //     //console.log('Request query value', req.query.search_input);

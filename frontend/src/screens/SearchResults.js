@@ -25,18 +25,20 @@ const SearchResults = (props) => {
     useEffect(() => { //Only want to fetch data when component mounts
         const fetchData = async () => {
             //const { data } = await axios.get('/api/clinics'); 
-            const { data } = await axios.get('search-results/' + search); //Filtered array in backend transferred to data in frontend
+            const { data } = await axios.get('/api/clinics/search-results/' + search); //Filtered array in backend transferred to data in frontend
             setClinics(data);
         };
         fetchData();
-    }, []);
+    }, [search]);
+
+    console.log(clinics);
 
     return (
         <div>
             <h4>Search Results</h4>
             {/* {searchResultElements} */}
             {clinics.map(clinic => (
-                <Result key={clinic.id} clinic = {clinic} />
+                <Result key={clinic._id} clinic = {clinic} />
             ))}     
         </div>
     );
