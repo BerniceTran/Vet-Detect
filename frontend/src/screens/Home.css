@@ -1,5 +1,15 @@
 .Home {
-    background-color: green;
-    /* width: 100%; */
+    
    
+}
+
+header {
+    height: 600px;
+    background-color: aliceblue;
+    background-image: url('../images/pet-banner2.png');
+    background-size: contain;
+    background-repeat: no-repeat;   
+    background-position: bottom;
+    
+    
 }

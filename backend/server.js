@@ -9,7 +9,7 @@ import bcrypt from 'bcryptjs';
 import clinicRouter from './routers/clinicRouter.js'; //Server side, important to append .js extension
 import userRouter from './routers/userRouter.js';
 import User from './models/userModel.js';
-import Strategy from './passportConfig.js';
+//import Strategy from './passportConfig.js';
 
 const LocalStrategy = passportLocal.Strategy;
 passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
@@ -29,8 +29,7 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-// Takes session, unravels, and returns user
-
+// Unravels session and returns user
 passport.deserializeUser((id, done) => {
     User.findById(id, function(err, user) {
         done(err, user);
@@ -56,8 +55,7 @@ app.use(
     session({
         secret: "secretcode",
         resave: true,
-        saveUninitialized: true,
-        // store: new MongoStore   
+        saveUninitialized: true 
     })
 )
 app.use(cookieParser("secretcode"));
@@ -88,10 +86,15 @@ app.post("/login",  (req, res, next) => {
                 res.send(true);
                 //res.send(user);
                 //res.send("Successfully authenticated");
-                // console.log("In auth",user);
             });
         }
     })(req, res, next);
+});
+
+app.get('/logout', function(req, res){
+    req.logout();
+    // console.log("Logging out");
+    // console.log(res.user);
 });
 
 app.post("/register", (req, res) => {
@@ -117,30 +120,6 @@ app.post("/register", (req, res) => {
         }
     });
 });
-
-// app.get('/search-results', (req, res) => {
-//     //console.log('Request query value', req.query.search_input);
-
-//     const querySearchParam = req.query.search_input.toLowerCase();
-//     const queryLocationParam = req.query.location.toLowerCase();
-
-//     let filteredData = [];
-
-//     // console.log(querySearchParam);
-//     // console.log(queryLocationParam);
-
-//     if (querySearchParam == undefined || queryLocationParam == undefined) {
-//         res.send(data);
-//     } else {
-//         // console.log(querySearchParam);
-//         // console.log(data);
-        
-//         filteredData = data.clinics.filter(clinic => clinic.clinicName.toLowerCase().includes(querySearchParam));
-//         // console.log(filteredData);
-
-//         res.send(filteredData);
-//     }
-// });
 
 app.use('/api/users', userRouter);
 app.use('/api/clinics', clinicRouter);

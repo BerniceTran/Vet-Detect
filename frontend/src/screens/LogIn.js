@@ -36,7 +36,7 @@ const Login = (prop) => {
                     {error ? <p> {error} </p> : null }
                     <input placeholder="email" onChange={e => setEmail(e.target.value)}/>
                     <input placeholder="password" onChange={e => setPassword(e.target.value)}/>
-                    <button onClick={login}>Submit</button>)
+                    <button onClick={login}>Submit</button>
                 </div>
             }
             {/* <h4>Log In</h4>
