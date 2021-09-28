@@ -1,11 +1,11 @@
 const Result = ({clinic}) => {
     return (
-       <div>
+       <div className="Clinic">
            <div>
                
            </div>
            <h4>{clinic.name}</h4>
-           {/* <p>{clinic.address}</p> */}
+           <p>{clinic.address.street    }</p>
        </div>
     );
 }

@@ -8,7 +8,7 @@ header {
     border-color: white;
 }
 
-.Navbar {
+.Nav {
     display: flex;
     justify-content: space-between;
     align-items: center;

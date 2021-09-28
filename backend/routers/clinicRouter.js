@@ -31,9 +31,7 @@ clinicRouter.get(
         const queryLocation = req.query.location;
 
         //const clinics = await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
-
         //const clinics = await Clinic.find(name: new RegExp(querySearch, 'i'), {$or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
-
 
         const clinics = querySearch ? 
             await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]}) :

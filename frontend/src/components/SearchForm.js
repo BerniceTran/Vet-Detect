@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import './SearchForm.css';
+import { IconContext } from "react-icons";
+import { FaSearch } from 'react-icons/fa'
 
 function Search(prop) {
 
@@ -30,10 +33,12 @@ function Search(prop) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <input type="text" placeholder="Veterinarian, clinic, condition..." value={searchInput} onChange={handleSearchInputChange}></input>
-          <input type="text" placeholder="City, state, or zip code" value={location} onChange={handleLocationChange}></input>
-          <button type="submit" onKeyPress={handleKeyPress}>Submit</button>
+        <div className="Search">
+          <input className="ClinicInput" type="text" placeholder="Veterinarian, clinic, condition..." value={searchInput} onChange={handleSearchInputChange}></input>
+          <input className="LocationInput" type="text" placeholder="City, state, or zip code" value={location} onChange={handleLocationChange}></input>
+          <IconContext.Provider value={ { className: "SearchButton" } }>
+            <button type="submit" onKeyPress={handleKeyPress}><FaSearch /></button>
+          </IconContext.Provider>
         </div>
       </form>
     </div>

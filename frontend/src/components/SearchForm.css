@@ -1,0 +1,43 @@
+.Search {
+    height: 45px;
+    font-size: 20px;
+}
+
+input {
+    width: 225px;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.ClinicInput {
+    border-right: 1px solid lightgray;  
+}
+
+.LocationInput {
+    
+}
+
+button {
+    height: 100%;
+    width: 45px;
+    background-color: #EF5E5E;
+    border: none;
+}
+
+button:hover {
+    background-color: #E34C4C;
+}
+
+.SearchButton {
+    color: white;
+    /* font-size: 20px; */
+}
+
+
+

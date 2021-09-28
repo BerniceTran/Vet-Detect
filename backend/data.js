@@ -31,7 +31,7 @@ const data = {
             // state: "NY",
             // zip: 11103,
             phone: 7187282822,
-            image: null,
+            image: "https://s3-media0.fl.yelpcdn.com/bphoto/qG7JWhNjZojuf0ZD4Md4rg/l.jpg",
         },
         {
             name: "Veterinary Care Group - Astoria",

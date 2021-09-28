@@ -35,8 +35,8 @@ const Home = () => {
     return (
        <div className="Home">
             <header>
-                <div className="Navbar">
-                    <Link to="/"    ><img className="Logo" alt="vetdetect logo" src={vetdetect}/></Link>
+                <div className="Nav">
+                    <Link to="/" ><img className="Logo" alt="vetdetect logo" src={vetdetect}/></Link>
                     {
                         user ? 
                             <div className="LoggedInNav">
