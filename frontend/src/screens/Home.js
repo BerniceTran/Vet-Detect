@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import './Home.css';
-import Navbar from "../components/Navbar";
 import Search from "../components/SearchForm";
+import './Home.css';
+import vetdetect from '../images/vetdetect.png';
 
 const Home = () => {
 
@@ -34,28 +34,60 @@ const Home = () => {
 
     return (
        <div className="Home">
-           <header>
-               <div>
-                    <Link to="/">VetDetect</Link>
+            <header>
+                <div className="Navbar">
+                    <Link to="/"    ><img className="Logo" alt="vetdetect logo" src={vetdetect}/></Link>
                     {
                         user ? 
-                        <div>
-                            <p>{user.firstName}</p> 
-                            <button onClick={logout}>Log Out</button>
-                        </div> :
-                        <div>
-                            <Link to="/login">Log In</Link>
-                            <Link to="/signup">Sign Up</Link>
-                        </div>
+                            <div className="LoggedInNav">
+                                <p>{user.firstName}</p> 
+                                <button onClick={logout}>Log Out</button>
+                            </div>
+                        :
+                            <ol className="LoggedOutNav">
+                                <li className="NavItem">
+                                    <Link to="/login" className="Navlink">Log In</Link>
+                                </li>
+                                <li className="NavItem">
+                                    <Link to="/signup" className="Navlink">Sign Up</Link> 
+                                </li>
+                            </ol>
                     }
-               </div>
-               <section>
-                   <Search /> 
-
-               </section>
-           </header>
-           {/* <Navbar /> */}
-       </div>
+                </div>
+                <div className="Intro">
+                    <div className="IntroDescription">
+                        <h1>Find local clinics for your </h1>
+                        <div className="slider">
+                            <div className="mask">
+                            <ul>
+                                <li className="anim1">
+                                    <div className="pet"><h1>dog</h1></div>
+                                </li>
+                                <li className="anim2">
+                                    <div className="pet"><h1>cat</h1></div>
+                                
+                                </li>
+                                <li className="anim3">
+                                    <div className="pet"><h1>rabbit</h1></div>
+                               
+                                </li>
+                                <li className="anim4">
+                                    <div className="pet"><h1>bird</h1></div>
+                                </li>
+                                <li className="anim5">
+                                    <div className="pet"><h1>snake</h1></div>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <Search /> 
+                </div>
+            </header>
+            <section>
+                
+            </section>
+        </div>
     );
 }
  

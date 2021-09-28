@@ -2,7 +2,6 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import './Navbar.css';
 import axios from "axios";
-import { session } from "passport";
 
 const Navigation = () => {
 
@@ -26,7 +25,7 @@ const Navigation = () => {
             withCredentials: true,
             url: "http://localhost:3001/logout"
         })
-        
+
         setUser(null);
         history.push("/");
     }
