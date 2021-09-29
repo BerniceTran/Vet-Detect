@@ -1,4 +1,5 @@
 import path from 'path';
+import dotenv from 'dotenv';
 import express, { query } from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
@@ -11,6 +12,8 @@ import clinicRouter from './routers/clinicRouter.js'; //Server side, important t
 import userRouter from './routers/userRouter.js';
 import User from './models/userModel.js';
 //import Strategy from './passportConfig.js';
+
+dotenv.config();
 
 const LocalStrategy = passportLocal.Strategy;
 passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
@@ -37,9 +40,11 @@ passport.deserializeUser((id, done) => {
     });
 });
 
+
+
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/vetdetect', 
+mongoose.connect(process.env.DB_URL || 'mongodb+srv://admin:ng9i5gC9s1tW9oaQ@cluster0.9gflz.mongodb.net/vetdetect?authSource=admin&replicaSet=atlas-13uzli-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', 
     async(err)=>{
         if(err) throw err;
         console.log("Connected to MongoDB");
