@@ -3,7 +3,8 @@ import axios from 'axios';
 //import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import Result from '../components/Result';
-import Navbar from "../components/Navbar";
+import Navbar from '../components/Navbar';
+import Map from '../components/Map'
 
 
 const SearchResults = (props) => {
@@ -31,9 +32,9 @@ const SearchResults = (props) => {
             setClinics(data);
         };
         fetchData();
-    }, [search]);
+    }, [search]);   
 
-    console.log(clinics);
+    // console.log(clinics);
 
     return (
         <div>
@@ -41,8 +42,9 @@ const SearchResults = (props) => {
             <h4>Search Results</h4>
             {/* {searchResultElements} */}
             {clinics.map(clinic => (
-                <Result key={clinic._id} clinic = {clinic} />
+                <Result key={clinic._id} clinic={clinic} />
             ))}     
+            <Map clinics={clinics}/>
         </div>
     );
 }

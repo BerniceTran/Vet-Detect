@@ -9,12 +9,10 @@ const clinicSchema = new mongoose.Schema(
             state: {type: String, required: true},
             zip: {type: String, required: true},
         },
-        // street: {type: String, required: true},
-        // city: {type: String, required: true},
-        // state: {type: String, required: true},
-        // zip: {type: Number, required: true},
+        latitude: {type: mongoose.Types.Decimal128, required: true}, 
+        longitude: {type: mongoose.Types.Decimal128, required: true},
         phone: {type: Number, required: true},
-        image: {type: String}
+        image: {type: String},
     }, 
     {
         timestamps: true

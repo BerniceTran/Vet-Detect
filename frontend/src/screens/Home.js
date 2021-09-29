@@ -81,7 +81,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <Search /> 
+                    <Search/> 
                 </div>
             </header>
             <section>

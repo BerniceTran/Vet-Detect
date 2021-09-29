@@ -1,3 +1,4 @@
+import path from 'path';
 import express, { query } from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
@@ -42,6 +43,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/vetdetect',
     async(err)=>{
         if(err) throw err;
         console.log("Connected to MongoDB");
+    
 });
 
 // Middleware
@@ -51,6 +53,7 @@ app.use(cors({
     origin: "http://localhost:3000", // location of the React app 
     credentials: true
 }));
+// app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(
     session({
         secret: "secretcode",
@@ -133,5 +136,12 @@ app.use((err, req, res, next) => {
     res.status(500).send({message: err.message});
 });
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
+// });
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Serving at http://localhost:${port}`));
+
+// const port = process.env.PORT;
+// app.listen(port, () => console.log(`Listening on port:${port}`));

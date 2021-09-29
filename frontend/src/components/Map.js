@@ -18,9 +18,6 @@ const Map = ({clinics}) => {
         );
     }
 
-    const renderMarkers = () => {
-        return 
-    } 
 
     console.log(locations);
 
