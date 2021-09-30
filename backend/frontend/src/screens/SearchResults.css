@@ -1,0 +1,19 @@
+.SearchResultsContent {
+    display: flex;
+    flex-direction: row;
+    /* background-size: contain; */
+    /* width: 100%; */
+}
+
+.SearchResults {
+    padding: 40px;
+    width: 60%;
+}
+
+.SearchResults h4 {
+    margin: 0;
+}
+
+.Map {
+    width: 40%;
+}

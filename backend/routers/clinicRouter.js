@@ -33,9 +33,13 @@ clinicRouter.get(
         //const clinics = await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
         //const clinics = await Clinic.find(name: new RegExp(querySearch, 'i'), {$or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
 
+        // const clinics = querySearch ? 
+        //     await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]}) :
+        //     await Clinic.find({$or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
+
         const clinics = querySearch ? 
-            await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]}) :
-            await Clinic.find({$or:[{"address.city": queryLocation}, {"address.state": queryLocation}, {"address.zip": queryLocation}]});
+            await Clinic.find({$or:[{name: new RegExp(querySearch, 'i')}, {"address.city": new RegExp(queryLocation, 'i')}, {"address.state": new RegExp(queryLocation, 'i')}, {"address.zip": new RegExp(queryLocation, 'i')}]}) :
+            await Clinic.find({$or:[{"address.city": new RegExp(queryLocation, 'i')}, {"address.state": new RegExp(queryLocation, 'i')}, {"address.zip": new RegExp(queryLocation, 'i')}]});
 
         if (clinics) {
             res.send(clinics);

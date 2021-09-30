@@ -1,0 +1,30 @@
+.Clinic {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin-top: 20px;
+    /* border: 1px solid #ECECEC; */
+    border-radius: 15px;
+    box-shadow: 0 3px 10px lightgray;
+}
+
+.ClinicImage {
+    height: 200px;
+    width: 200px;
+}
+.ClinicImage img {
+    height: 200px;
+    width: 200px;
+}
+
+.ClinicDescription {
+    padding-left: 20px;
+}
+
+.ClinicDescription h3 {
+    margin: 0px;
+}
+
+.ClinicDescription p {
+    /* margin: 5px 0 5px 0; */
+}

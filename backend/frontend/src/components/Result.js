@@ -1,11 +1,16 @@
+import './Result.css';
+
 const Result = ({clinic}) => {
     return (
        <div className="Clinic">
-           <div>
-               
+           <div className="ClinicImage">
+                <img src={clinic.image} alt={clinic.name}/>
            </div>
-           <h4>{clinic.name}</h4>
-           <p>{clinic.address.street    }</p>
+           <div className="ClinicDescription">
+                <h3>{clinic.name}</h3>
+                <p>{clinic.address.street} {clinic.address.city}, {clinic.address.state} {clinic.address.zip}</p>
+                <p>+{clinic.phone}</p>
+            </div> 
        </div>
     );
 }

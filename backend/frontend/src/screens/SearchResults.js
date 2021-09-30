@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import Result from '../components/Result';
 import Navbar from '../components/Navbar';
-import Map from '../components/Map'
+import Map from '../components/Map';
+import './SearchResults.css'
 
 
 const SearchResults = (props) => {
@@ -12,7 +13,7 @@ const SearchResults = (props) => {
     // Get query string from URL
 
     const { search } = useLocation(); // Search property whose value is the query string: 
-    console.log('Query string:', search);
+    // console.log('Query string:', search);
 
     // // To get query string values
 
@@ -27,7 +28,6 @@ const SearchResults = (props) => {
 
     useEffect(() => { //Only want to fetch data when component mounts
         const fetchData = async () => {
-            //const { data } = await axios.get('/api/clinics'); 
             const { data } = await axios.get('/api/clinics/search-results/' + search); //Filtered array in backend transferred to data in frontend
             setClinics(data);
         };
@@ -39,12 +39,21 @@ const SearchResults = (props) => {
     return (
         <div>
             <Navbar />
-            <h4>Search Results</h4>
-            {/* {searchResultElements} */}
-            {clinics.map(clinic => (
-                <Result key={clinic._id} clinic={clinic} />
-            ))}     
-            <Map clinics={clinics}/>
+            <div className="SearchResultsContent">
+                <div className="SearchResults">
+
+                    <h4>Search Results</h4>
+                    
+                    {clinics.map(clinic => (
+                        <Result key={clinic._id} clinic={clinic} />
+                    ))}
+                </div>  
+                <div className="Map">
+                     <Map clinics={clinics}/> 
+                </div>
+                   
+            </div>
+        
         </div>
     );
 }
