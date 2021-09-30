@@ -4,6 +4,8 @@ import axios from "axios";
 import Search from "../components/SearchForm";
 import './Home.css';
 import vetdetect from '../images/vetdetect.png';
+import bird from '../images/bird.png';
+import Footer from "../components/Footer";
 
 const Home = () => {
 
@@ -85,8 +87,16 @@ const Home = () => {
                 </div>
             </header>
             <section>
-                
-            </section>
+                <div>
+                    <h1>Find care, reviews, and more</h1>
+                    <h1>all in one place</h1>
+                </div>
+                <div>
+                    <img src={bird} alt="bird"/>
+                    {/* <img src="https://nas-national-prod.s3.amazonaws.com/robin_0.gif" alt="bird"/> */}
+                </div>
+            </section> 
+            <Footer />
         </div>
     );
 }

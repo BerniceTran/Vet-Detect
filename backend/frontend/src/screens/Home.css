@@ -48,7 +48,41 @@ header {
   color: #EF5E5E;
   /* text-align: center; */
   margin: 0px;
+}
 
+section {
+  display: flex;
+  height: 300px;
+  text-align: center;
+  /* background-image: url('../images/birds-banner.png');
+  background-size: contain;
+  background-repeat: no-repeat;   
+  background-position: bottom; */
+}
+section div:first-child {
+  width: 70%;
+
+}
+section div:nth-child(2) {
+  width: 30%;
+}
+
+section h1 {
+  font-size: 40px;
+  color: #EF5E5E;
+}
+
+section img {
+  width: 100%;
+}
+
+footer {
+  display: flex;
+  height: 60px;
+  background-color: #E1F0FE;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
 .slider {

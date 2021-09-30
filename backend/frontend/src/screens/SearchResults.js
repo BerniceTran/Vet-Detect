@@ -6,6 +6,7 @@ import Result from '../components/Result';
 import Navbar from '../components/Navbar';
 import Map from '../components/Map';
 import './SearchResults.css'
+import Footer from '../components/Footer';
 
 
 const SearchResults = (props) => {
@@ -51,9 +52,8 @@ const SearchResults = (props) => {
                 <div className="Map">
                      <Map clinics={clinics}/> 
                 </div>
-                   
             </div>
-        
+            <Footer />
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import Footer from "../components/Footer";
 
 const Register = (prop) => {
 
@@ -24,12 +25,15 @@ const Register = (prop) => {
 
     return (
         <div>
-            <h4>Register</h4>
-            <input placeholder="first name" onChange={e => setFirstName(e.target.value)}/>
-            <input placeholder="last name" onChange={e => setLastName(e.target.value)}/>
-            <input placeholder="email" onChange={e => setEmail(e.target.value)}/>
-            <input placeholder="password" onChange={e => setPassword(e.target.value)}/>
-            <button onClick={register}>Submit</button>
+            <div>
+                <h4>Register</h4>
+                <input placeholder="first name" onChange={e => setFirstName(e.target.value)}/>
+                <input placeholder="last name" onChange={e => setLastName(e.target.value)}/>
+                <input placeholder="email" onChange={e => setEmail(e.target.value)}/>
+                <input placeholder="password" onChange={e => setPassword(e.target.value)}/>
+                <button onClick={register}>Submit</button>
+            </div>
+            <Footer />
         </div>
         
     );

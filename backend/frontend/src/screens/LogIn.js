@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import Navbar from '../components/Navbar';
+import Footer from "../components/Footer";
 
 const Login = (prop) => {
 
@@ -29,6 +31,7 @@ const Login = (prop) => {
 
     return (
         <div>
+            <Navbar />
             {loggedIn ? 
                 <Redirect to={{ pathname: '/'}}/> : 
                 <div>
@@ -39,6 +42,7 @@ const Login = (prop) => {
                     <button onClick={login}>Submit</button>
                 </div>
             }
+            <Footer />
             {/* <h4>Log In</h4>
             {data ? <p> {data} </p> : null }
             <input placeholder="email" onChange={e => setEmail(e.target.value)}/>
