@@ -1,9 +1,10 @@
 .Navbar {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
     background-color: #E1F0FE;
+    
 }
 
 .Logo {

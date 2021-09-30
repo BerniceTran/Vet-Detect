@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
+import './Login.css';
 
 const Login = (prop) => {
 
@@ -34,12 +35,14 @@ const Login = (prop) => {
             <Navbar />
             {loggedIn ? 
                 <Redirect to={{ pathname: '/'}}/> : 
-                <div>
-                    <h4>Log In</h4>
-                    {error ? <p> {error} </p> : null }
-                    <input placeholder="email" onChange={e => setEmail(e.target.value)}/>
-                    <input placeholder="password" onChange={e => setPassword(e.target.value)}/>
-                    <button onClick={login}>Submit</button>
+                <div className="UserPage">
+                    <div className="UserContent">
+                        <h2>Log In</h2>
+                        {error ? <p> {error} </p> : null }
+                        <input className="UserInput" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+                        <input className="UserInput" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <button className="UserButton" onClick={login}><h4>Submit</h4></button>
+                    </div>
                 </div>
             }
             <Footer />

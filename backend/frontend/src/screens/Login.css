@@ -1,0 +1,52 @@
+.UserPage {
+    /* background-image: url('https://t3.ftcdn.net/jpg/02/00/12/40/360_F_200124079_6ayr4VU5AhLMfwPaDOxIk6Dgv0JWaCwX.jpg');
+    background-repeat: no-repeat;   
+    background-position: bottom;
+    background-size: contain; */
+    background-color: #F7EFC7;
+    height: 610px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;    
+}
+
+.UserContent {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px lightgray;
+    height: 400px;
+    width: 500px;
+    align-items: center; 
+    justify-content: center;   
+    
+}
+
+.UserContent h2 {
+    margin-top: 0px;
+    margin-bottom: 30px;
+    color: #EF5E5E;
+}
+
+.UserInput {
+    height: 30px;
+    width: 70%;
+    margin-bottom: 5px;
+}
+
+.UserButton {
+    height: 35px;
+    width: 72%;
+    border: none;
+    background-color: #EF5E5E;
+    color: white;
+}
+
+.UserButton:hover {
+    background-color: #E34C4C;
+}
+
+.UserButton h4 {
+    margin: 0;
+}

@@ -37,7 +37,8 @@ function Search(prop) {
           <input className="ClinicInput" type="text" placeholder="Veterinarian, clinic, condition..." value={searchInput} onChange={handleSearchInputChange}></input>
           <input className="LocationInput" type="text" placeholder="City, state, or zip code" value={location} onChange={handleLocationChange}></input>
           <IconContext.Provider value={ { className: "SearchButton" } }>
-            <button type="submit" onKeyPress={handleKeyPress}><FaSearch /></button>
+            <button className="SearchButton" type="submit" onKeyPress={handleKeyPress}>Search</button>
+            {/* <button className="SearchButton" type="submit" onKeyPress={handleKeyPress}><FaSearch/></button> */}
           </IconContext.Provider>
         </div>
       </form>

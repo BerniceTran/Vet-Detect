@@ -99,6 +99,7 @@ app.post("/login",  (req, res, next) => {
 
 app.get('/logout', function(req, res){
     req.logout();
+    req.session.destroy();
     // console.log("Logging out");
     // console.log(res.user);
 });
@@ -145,6 +146,3 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Serving at http://localhost:${port}`));
-
-// const port = process.env.PORT;
-// app.listen(port, () => console.log(`Listening on port:${port}`));
