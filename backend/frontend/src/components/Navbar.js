@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import './Navbar.css';
 import axios from "axios";
 import vetdetect from '../images/vetdetect.png';
-import Search from "../components/SearchForm";
+import Search from "./SearchForm";
 
 const Navigation = () => {
 

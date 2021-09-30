@@ -13,8 +13,6 @@ import userRouter from './routers/userRouter.js';
 import User from './models/userModel.js';
 //import Strategy from './passportConfig.js';
 
-dotenv.config();
-
 const LocalStrategy = passportLocal.Strategy;
 passport.use("localstrategy", new LocalStrategy(/*{passReqToCallback:true},*/ (username, password, done) => {
     User.findOne({ email: username }, (err, user) => {
@@ -40,15 +38,14 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-
-
+dotenv.config();
+const __dirname = path.resolve();
 const app = express();
 
-mongoose.connect(process.env.DB_URL || 'mongodb+srv://admin:ng9i5gC9s1tW9oaQ@cluster0.9gflz.mongodb.net/vetdetect?authSource=admin&replicaSet=atlas-13uzli-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', 
+mongoose.connect(process.env.DB_URL, 
     async(err)=>{
         if(err) throw err;
         console.log("Connected to MongoDB");
-    
 });
 
 // Middleware
@@ -58,7 +55,8 @@ app.use(cors({
     origin: "http://localhost:3000", // location of the React app 
     credentials: true
 }));
-// app.use(express.static(path.join(__dirname, 'client/build')));
+// app.use(cors());
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(
     session({
         secret: "secretcode",
@@ -141,9 +139,9 @@ app.use((err, req, res, next) => {
     res.status(500).send({message: err.message});
 });
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Serving at http://localhost:${port}`));

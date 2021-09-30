@@ -1,0 +1,36 @@
+.LocationMarker {
+    height: 30px;
+    width: 200px;
+    display: flex;
+}
+
+.Marker {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: #000;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    user-select: none;
+    transform: translate(-50%, -50%); */
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;   
+    background-image: url('../images/animal-marker.png');
+ 
+  }
+/* .Marker:hover {
+    background-color: red;
+} */
+
+.MarkerNameDiv {
+    background-color: #EF5E5E;
+    text-align: center;
+}
+
+.MarkerNameDiv h4 {
+    color: white;
+}
