@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
     "start:dev": "nodemon backend/server.js",
-    "build": "cd frontend && npm run build",  
-    "install-frontend": "cd frontend && npm install",
+    "build": "cd backend/frontend && npm run build",  
+    "install-frontend": "cd backend/frontend && npm install",
     "heroku-postbuild": "npm run install-frontend && npm run build"
   },
   "repository": {
