@@ -51,11 +51,12 @@ mongoose.connect(process.env.DB_URL,
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors({
-//     origin: "http://localhost:3000", // location of the React app 
-//     credentials: true
-// }));
-app.use(cors());
+app.use(cors({
+    origin: process.env.HOST_URL, 
+    // origin: "http://localhost:3000", // location of the React app 
+    credentials: true
+}));
+// app.use(cors({credentials: true}));
 // app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(
     session({
@@ -140,10 +141,10 @@ app.use((err, req, res, next) => {
     res.status(500).send({message: err.message});
 });
 
-app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use(express.static(path.join(__dirname, '/frontend/build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + 'frontend/build/index.html'));
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
 });
 
 const port = process.env.PORT || 3001;

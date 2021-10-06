@@ -21,7 +21,8 @@ const Login = (prop) => {
                 password: password
             },
             withCredentials: true,
-            url: "http://localhost:3001/login",
+            url: "/login",
+            // url: "http://localhost:3001/login",
         }).then((res) => {
             if (res.data === true) setLoggedIn(true);
             console.log(res);
