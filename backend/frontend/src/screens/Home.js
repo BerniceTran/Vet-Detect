@@ -16,7 +16,7 @@ const Home = () => {
         axios({
         method: "GET",
         withCredentials: true,
-        url: "http://localhost:3001/api/users/",
+        url: "/api/users/",
         })
         .then((res) => {
             setUser(res.data);
@@ -27,7 +27,7 @@ const Home = () => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:3001/logout"
+            url: "/logout",
         })
         
         setUser(null);
