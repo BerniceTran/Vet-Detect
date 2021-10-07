@@ -6,10 +6,12 @@ import './Home.css';
 import vetdetect from '../images/vetdetect.png';
 import bird from '../images/bird.png';
 import Footer from "../components/Footer";
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 const Home = () => {
 
     const [user, setUser] = useState("");
+    const [showLinks, setShowLinks] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
@@ -34,11 +36,24 @@ const Home = () => {
         history.push("/");
     }
 
+
+
     return (
        <div className="Home">
             <header>
-                <div className="Nav">
-                    <Link to="/" ><img className="Logo" alt="vetdetect logo" src={vetdetect}/></Link>
+                <div className="HomeNav">
+                    <div className="LeftSide">
+                        <Link to="/" ><img className="Logo" alt="vetdetect logo" src={vetdetect}/></Link>
+                    </div>
+                    <div className="RightSide">
+                        <div className="NavLinks" id={showLinks ? "hidden" : ""}>
+                            <Link to="/login" className="NavLink">Log In</Link>
+                            <Link to="/signup" className="NavLink">Sign Up</Link> 
+                        </div>
+                        <button onClick={() => setShowLinks(!showLinks)}><GiHamburgerMenu className="Hamburger" /*size={20} color={"#EF5E5E"}*//></button> 
+                    </div>
+                    
+                    {/* <Link to="/" ><img className="Logo" alt="vetdetect logo" src={vetdetect}/></Link>
                     {
                         user ? 
                             <div className="LoggedInNav">
@@ -54,7 +69,7 @@ const Home = () => {
                                     <Link to="/signup" className="Navlink">Sign Up</Link> 
                                 </li>
                             </ol>
-                    }
+                    } */}
                 </div>
                 <div className="Intro">
                     <div className="IntroDescription">

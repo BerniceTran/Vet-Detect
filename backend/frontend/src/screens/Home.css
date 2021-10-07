@@ -1,18 +1,19 @@
 header {
-    height: 600px;
-    background-color: #E1F0FE;
-    background-image: url('../images/pets-banner.png');
-    background-size: contain;
-    background-repeat: no-repeat;   
-    background-position: bottom;
-    border-color: white;
+  width: 100%;
+  height: 500px;
+  background-color: #E1F0FE;
+  background-image: url('../images/pets-banner.png');
+  background-size: contain;
+  background-repeat: no-repeat;   
+  background-position: bottom;
+  border-color: white;
 }
 
-.Nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px; 
+/* .HomeNav { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px; 
 }
 
 .Logo {
@@ -32,7 +33,7 @@ header {
 
 .Navlink {
     text-decoration: none;  
-}
+} */
 
 .Intro {
     padding: 20px 40px;
@@ -319,4 +320,82 @@ footer {
     opacity: 0;
     z-index: 0;
   }
+}
+
+
+.HomeNav {
+  display: flex;
+  padding: 30px 40px;
+}
+
+.HomeNav .LeftSide {
+  flex: 50%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /* padding-left: 40px; */
+}
+
+.HomeNav .LeftSide .Logo {
+
+  width: 200px;
+}
+
+.HomeNav .RightSide {
+  flex: 50%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  /* padding-right: 40px; */
+}
+
+.HomeNav .RightSide #hidden {
+  display: flex;
+}
+
+.HomeNav .RightSide .NavLinks .NavLink {
+  text-decoration: none;
+  color: #EF5E5E; 
+  font-size: 1.2em;
+  margin-left: 30px; 
+} 
+
+.HomeNav .RightSide button {
+  display: none;
+}
+
+@media (max-width: 600px) { /*Any screen less than max-width*/
+  .HomeNav .RightSide .NavLinks {
+    display: none;
+  }
+
+  .HomeNav .RightSide button {
+    display: flex;
+    border: none;
+    height: 20px;
+    background-color: transparent;
+  }
+
+  .HomeNav .RightSide #hidden {
+    position: absolute;
+    right: 0px;
+    top: 95px;
+    height: auto;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .HomeNav .RightSide #hidden .NavLink {
+    margin: 10px;
+  }
+
+  .HomeNav .Hamburger {
+    color: #EF5E5E;
+    font-size: 1.5em;
+    
+  }
+
 }
