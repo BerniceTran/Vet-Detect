@@ -98,10 +98,6 @@
         width: 120px;
     }
 
-    .Search .ClinicInput {
-        border: none;
-    }
-
     .Navbar .NavLinks {
         display: none;
     }
@@ -138,7 +134,6 @@
     .Search .LocationInput {
         display: none;
     }  
-}
     
 @media (max-width: 350px) {
     .Navbar .Logo {
@@ -148,4 +143,5 @@
     .Search {
         margin-left: 0;
     }
+}
 }
