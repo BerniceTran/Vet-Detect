@@ -1,0 +1,112 @@
+.HomeSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    font-size: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.HomeSearch .ClinicInput {
+    width: 45%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-right: 1px solid lightgray; 
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.HomeSearch .LocationInput {
+    width: 45%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+/* button {
+    height: 100%;
+    width: 45px;
+    background-color: #EF5E5E;
+    border: none;
+}
+
+button:hover {
+    background-color: #E34C4C;
+} fa */
+
+.HomeSearch .SearchButton { 
+    width: 10%;
+    height: 100%;
+    background-color: #EF5E5E;
+    color: white;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* font-size: 20px; for fa size*/
+}
+
+.SearchButton:hover {
+    background-color: #E34C4C;
+}
+
+@media (max-width: 600px) {
+    .HomeSearchContainer {
+        height: 150px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: white;
+    }
+
+    .HomeSearchContainer form {
+        height: 100%;
+    }
+
+    .HomeSearch {
+        height: 100%;
+        display: flex; 
+        flex-direction: column;
+    }
+
+    .HomeSearch .ClinicInput {
+        width: 95%;
+        height: 33%;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        border-bottom: 1px solid lightgray; 
+    }
+
+    .HomeSearch .LocationInput {
+        width: 95%;
+        height: 33%;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        border-bottom: 1px solid lightgray; 
+    }
+
+    .HomeSearch .SearchButton { 
+        width: 95%;
+        height: 25%;
+        margin: 10px;
+        background-color: #EF5E5E;
+        color: white;
+        border: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        /* font-size: 20px; for fa size*/
+    }
+}
+
+
+
