@@ -20,7 +20,7 @@ const Register = (prop) => {
                 password: password
             },
             withCredentials: true,
-            url: "http://localhost:3001/register",
+            url: "/register",
         }).then((res) => console.log(res));
     }
 
