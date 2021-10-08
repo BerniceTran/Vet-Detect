@@ -76,26 +76,34 @@ button:hover {
     }
 
     .HomeSearch .ClinicInput {
-        width: 95%;
+        width: 92%;
         height: 33%;
         border: none;
         outline: none;
-        font-size: 15px;
+        font-size: 15px;    
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
         border-bottom: 1px solid lightgray; 
     }
 
     .HomeSearch .LocationInput {
-        width: 95%;
+        width: 92%;
         height: 33%;
         border: none;
         outline: none;
         font-size: 15px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
         border-bottom: 1px solid lightgray; 
     }
 
     .HomeSearch .SearchButton { 
-        width: 95%;
-        height: 25%;
+        width: 92%;
+        height: 33%;
         margin: 10px;
         background-color: #EF5E5E;
         color: white;

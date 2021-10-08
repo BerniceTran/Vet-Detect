@@ -48,10 +48,9 @@ const SearchResults = (props) => {
                     {clinics.map(clinic => (
                         <Result key={clinic._id} clinic={clinic} />
                     ))}
-                </div>  
-                <div className="Map">
-                     <Map clinics={clinics}/> 
                 </div>
+                    <Map clinics={clinics}/> 
+
             </div>
             <Footer />
         </div>

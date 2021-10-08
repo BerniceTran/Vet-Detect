@@ -7,7 +7,7 @@ const Map = ({clinics}) => {
     // console.log(REACT_APP_API_KEY); 
 
   return (
-        <div style={{ height: '100vh' }}>
+        <div className="Map" /*style={{ height: '100vh' }}*/>
          
             <GoogleMapReact
                 bootstrapURLKeys={{ key: REACT_APP_API_KEY }}
