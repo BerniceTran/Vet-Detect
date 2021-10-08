@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
+        <Switch>    
         {/* Routes are used to render components based on the URL of the browser */}
           <Route exact path="/"> 
             <Home />

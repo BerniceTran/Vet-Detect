@@ -1,7 +1,7 @@
 .Search {
+    display: flex;
     height: 45px;
     font-size: 20px;
-
 }
 
 input:focus {
@@ -9,16 +9,18 @@ input:focus {
 }
 
 .ClinicInput {
-    width: 225px;
+    width: 100%;
     height: 100%;
     border: none;
     outline: none;
     font-size: 15px;
     border-right: 1px solid lightgray;  
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .LocationInput {
-    width: 225px;
+    width: 100%;
     height: 100%;
     border: none;
     outline: none;
@@ -41,6 +43,8 @@ button:hover {
     background-color: #EF5E5E;
     color: white;
     border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     /* font-size: 20px; for fa size*/
 }
 

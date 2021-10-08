@@ -1,27 +1,147 @@
 .Navbar {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 20px 40px;
-    background-color: #E1F0FE;
-    
+    background-color: #E1F0FE;   
 }
 
-.Logo {
+.Navbar .LeftSide {
+    /* flex: 20%; */
+    justify-content: left;
+}
+
+.Navbar .Center {
+    flex: 60%;
+    justify-content: center;
+}
+
+.Navbar .RightSide {
+    /* flex: 20%; */
+    display: flex;
+    justify-content: right;
+}
+
+.Navbar .Logo {
     width: 200px;
 }
 
-.LoggedOutNav {
+.Search {
+    margin-left: 40px;
+}
+
+.Navbar #hidden {
     display: flex;
-    list-style: none;
-    padding: 0px;
-    font-size: 1.1em;
 }
 
-.NavItem {
-    padding: 0 0 0 30px; 
+.Navbar .NavLinks .NavLink {
+    text-decoration: none;
+    color: #EF5E5E; 
+    font-size: 1.2em;
+    margin-left: 30px;
 }
 
-.Navlink {
-    text-decoration: none;  
+.Navbar .HamButton {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .Navbar {
+        padding: 20px;
+    }
+
+    .Navbar .Logo {
+        width: 120px;
+    }
+
+    .Search {
+        margin-left: 20px;
+    }
+
+    .Navbar .NavLinks {
+        display: none;
+    }
+
+    .Navbar .HamButton {
+        display: flex;
+        border: none;
+        height: 20px;
+        background-color: transparent;
+        padding: 0;
+        margin-left: 20px;
+    }
+
+    .Navbar #hidden {
+        position: absolute;
+        right: 0px;
+        top: 85px;
+        height: auto;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Navbar #hidden .NavLink {
+        margin: 10px;
+    }
+
+    .Navbar .Hamburger {
+        color: #EF5E5E;
+        font-size: 2em;
+    } 
+}
+
+@media (max-width: 600px) {
+    .Navbar .Logo {
+        width: 120px;
+    }
+
+    .Navbar .NavLinks {
+        display: none;
+    }
+
+    .Navbar .HamButton {
+        display: flex;
+        border: none;
+        height: 20px;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .Navbar #hidden {
+        position: absolute;
+        right: 0px;
+        top: 85px;
+        height: auto;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Navbar #hidden .NavLink {
+        margin: 10px;
+    }
+
+    .Navbar .Hamburger {
+        color: #EF5E5E;
+        font-size: 2em;
+    } 
+
+    .Search .LocationInput {
+        display: none;
+    }  
+    
+@media (max-width: 350px) {
+    .Navbar .Logo {
+        display: none;
+    }
+
+    .Search {
+        margin-left: 0;
+    }
+}
 }
