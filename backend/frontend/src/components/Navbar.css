@@ -134,6 +134,7 @@
     .Search .LocationInput {
         display: none;
     }  
+}
     
 @media (max-width: 350px) {
     .Navbar .Logo {
@@ -143,5 +144,6 @@
     .Search {
         margin-left: 0;
     }
-}
+
+
 }
